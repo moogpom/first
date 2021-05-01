@@ -55,7 +55,7 @@ ROOT_URLCONF = 'w5Blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['w5Blog/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

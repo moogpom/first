@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>Write Your Blog</h1>
 
 <form action="{%url 'create'%}" method="post">
@@ -7,3 +10,4 @@
     본문 : <textarea name="body" id="" cols="30" rows="10"></textarea>
     <button type="submit">submit</button>
 </form>
+{% endblock %}
