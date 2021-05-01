@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail</title>
+    <style>
+        body{text-align: center;}
+    </style>
+</head>
+<body>
+    <h1>{{blogContents.title}}</h1>
+    {{blogContents.writer}}
+    {{blogContents.pub_date}}
+    <hr>
+    <p>{{blogContents.body}}</p>
+    <a href="{% url 'edit' blogContents.id %}">수정하기</a>
+    <a href="{% url 'delete' blogContents.id %}">삭제하기</a>
+</body>
+</html>
