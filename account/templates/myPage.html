@@ -1,0 +1,27 @@
+{%extends 'bookAppBase.html'%}
+
+{%block content%}
+
+    <hr>
+    <div class="content">
+        <table>
+            <tr>
+                <td>이름</td><td> {{user.username}}</td>
+            </tr>
+            <tr>
+                <td>비밀번호</td><td> {{user.password1}}</td>
+            </tr>
+            <tr>
+                <td>닉네임</td><td> {{user.nickname}}</td>
+            </tr>
+            <tr>
+                <td>사는 곳</td><td> {{user.location}}</td>
+            </tr>
+            <tr>
+                <td>대학</td><td> {{user.university}}</td>
+            </tr>
+        </table>
+
+        <!--<a class="toNext" href="{% url 'editMyPage' %}">수정하기</a>-->
+    {%endblock%}
+    </div>

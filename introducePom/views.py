@@ -46,8 +46,28 @@ def edit(request,postId):
          #맨처음 수정버튼 눌렀을 때 editPost페이지 뜨게함
         return render(request,"editPost.html",{'postContents':updatePost})
 
+
+def deleteimage(request,postId):#올린 사진만 삭제해줌
+    updatePost = get_object_or_404(PomBlog,pk=postId)
+    if request.method == 'POST': #글 수정 후 저장버튼 눌렀을 때 method가 post다
+        updatePost.image=request.FILES.get('image')
+        updatePost.image.delete()
+        if updatePost.image is not None:
+           updatePost.image = request.FILES.get('image')
+        updatePost.pub_date=timezone.now()
+        updatePost.save()
+        #아 이거 하면 사진 삭제되긴하는데 삭제된상태로 저장되고 디테일페이지로 가는 거  마음에 안듦
+        return redirect("detailPost",updatePost.id)
+    else :
+        return render(request,"editPost.html",{'postContents':updatePost})
+
 def delete(request,postId):
-    deleteBook = get_object_or_404(PomBlog,pk=postId)
-    deleteBook.delete()
+    deletePost = get_object_or_404(PomBlog,pk=postId)
+    deletePost.delete()
     return redirect('home')
 
+
+def deleteAll(request):
+    deleteAll = PomBlog.objects.all()
+    deleteAll.delete()
+    return redirect('home')

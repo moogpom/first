@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render,get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from .forms import SignUpForm
@@ -30,8 +30,24 @@ def register_view(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()#얘는 commit없음
-            login(request,user)
-        return  redirect('homePage')
+        return  redirect('myPage')
     else:
         form = SignUpForm()
         return render(request,'signUp.html',{'form':form})
+
+def editMyPage(request):
+    if request.method =="GET":
+        form = SignUpForm()
+        return render(request,'editMyPage.html',{'userform':form})
+    else:
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+        return  redirect('myPage')
+        
+
+    
+def myPage(request):
+    if request.method == 'GET':
+        form = AuthenticationForm()
+        return render(request,'myPage.html',{'form':form})

@@ -24,4 +24,8 @@
     </table>
     <br>
 </form>
+<form  action="{% url 'deleteimage' postContents.id%}"method="post" >
+    {%csrf_token%}
+    <button type="submit">사진삭제</button>
+</form>
 {%endblock%}
