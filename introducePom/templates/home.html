@@ -1,0 +1,21 @@
+{%extends 'pomBlogBase.html'%}
+
+
+{%block content %}
+{% load static %}
+    <a href="{% url 'newPost' %}">새글 작성하기</a>
+    <hr>
+    <span>{% for unit in blogContents %}
+        {% if unit.image %}
+        <p class=""><img src="{{unit.image_thumbnail.url}}" ></p>
+        {% else %}
+        <p class=""><img src="{%static 'noimagePom.jpg'%}" alt="book" width="120"></p>
+        {% endif %}
+         
+        제목 | {{unit.title}}<br> 
+        작성자 | {{unit.writer}}<br>
+        설명 |  {{unit.summary}} 
+        <a class="toNext" href="{% url 'detailPost' unit.id%}">...더보기</a><br>
+        
+    {% endfor %}</span>
+ {%endblock%}

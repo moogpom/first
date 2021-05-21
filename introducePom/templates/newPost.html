@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<form  method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <br>
+   <h1>새 글 작성하기</h1>
+   <hr><br>
+    <table>
+        <tr><td>제목</td><td> <input  type="text" name="title"></td></tr>
+        <tr><td>작성자</td> <td><input type="text" name="writer"></td></tr>
+        <tr><td>본문</td><td><textarea name="body" cols="30" rows="10"></textarea></td></tr>
+        <tr><td>사진 : <input type="file" name="image"></td></tr>
+        <tr><td></td><td align="center"><button type="submit">올리기</button></td></tr>
+    </table>
+    <br>
+</form>
+</body>
+</html>

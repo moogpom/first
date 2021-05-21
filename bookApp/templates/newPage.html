@@ -1,0 +1,14 @@
+{%extends 'bookAppBase.html'%}
+
+{%block content%}
+
+<a href="{% url 'homePage'%}">홈페이지</a>
+<form  method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <table>
+    {{form.as_table}}
+    </table>
+    <br>
+    <button  type="submit">올리기</button>
+</form>
+{%endblock%}

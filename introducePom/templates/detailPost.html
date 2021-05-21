@@ -1,0 +1,24 @@
+{%extends 'pomBlogBase.html'%}
+
+
+{%block content %}
+   
+        {%csrf_token%}
+        <br>
+       
+       <hr>
+        <table class="detailTable">
+            <tr><th>제목</th><td> {{postContents.title}}</td></tr>
+            <tr><th>작성자</th> <td> {{postContents.writer}}</td></tr>
+            <tr><th>본문</th><td height="400px"> {{postContents.body}}</textarea></td></tr>
+            {% if postContents.image %}
+            <tr><th>사진</th><td> <img src={{postContents.image.url}} alt="pom"></td></tr>
+            {% endif %}
+           
+           
+            </table>    
+        {{postContents.pub_date}}<br>
+        <a class="toNext" href="{% url 'editPost' postContents.id%}">수정하기</a>
+        <a class="toNext" href="{% url 'deletePost' postContents.id%}">삭제하기</a>
+        <br>
+{%endblock%}

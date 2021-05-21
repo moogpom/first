@@ -1,0 +1,18 @@
+{% extends 'bookAppBase.html' %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <table>
+        {{edit_post.as_table}}
+    </table>
+    <button type="submit">올리기</button>
+</form>
+
+{%endblock%}
+
+
+
+
+

@@ -1,0 +1,27 @@
+{%extends 'pomBlogBase.html'%}
+
+
+{%block content %}
+{% load static %}
+    
+<form  method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <br>
+   <h1>글 수정하기</h1>
+   <hr><br>
+    <table>
+        <tr><td>제목</td><td> <input  type="text" name="title"  value="{{postContents.title}}"></td></tr>
+        <tr><td>작성자</td> <td><input type="text" name="writer" value="{{postContents.writer}}"></td></tr>
+        <tr><td>본문</td><td><textarea name="body" cols="30" rows="10" >{{postContents.body}}</textarea></td></tr>
+        <tr><td>사진 : 
+        {% if postContents.image %}
+             <input type="file" name="image" value="{{postContents.image.url}}"><a href="{{postContents.image.url}}"><img src={{postContents.image.url}} alt="pom"></a>
+        {% else %}
+            <input type="file" name="image" >
+        {% endif %}
+        </td></tr>
+        <tr><td></td><td align="center"><button type="submit">올리기</button></td></tr>
+    </table>
+    <br>
+</form>
+{%endblock%}
