@@ -20,8 +20,8 @@ def newPost(request):
         createPost.body=request.POST['body']
         #createPost.image = request.FILES['image']
         #사진을 올리지 않았을 때 기본이미지가 들어가도록함
-        #if request.FILES.get('image') is not None:
-        createPost.image = request.FILES.get('image')
+        if request.FILES.get('image') is not None:
+            createPost.image = request.FILES.get('image')
         createPost.pub_date=timezone.now()
         createPost.save()
         return redirect("detailPost",createPost.id)
