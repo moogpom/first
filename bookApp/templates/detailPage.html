@@ -1,7 +1,16 @@
 {%extends 'bookAppBase.html'%}
 
 {%block content%}
-
+    <style>
+        .content{
+            text-align: center;
+        }
+        .toNext{
+            background-color: black;;
+            color:beige;
+            padding: 10px;
+        }
+    </style>
     <hr>
     <div class="content">
     {% if bookContents.image %}
@@ -12,7 +21,7 @@
    출판사 |  {{bookContents.publisher}}<br>
     해설 | {{bookContents.body}}<br>
     {{bookContents.new_date}}<br>
-
+<br><br>
     <a class="toNext" href="{% url 'editBook' bookContents.id%}">수정하기</a>
     <a class="toNext" href="{% url 'deleteBook' bookContents.id%}">삭제하기</a>
     {%endblock%}

@@ -1,9 +1,33 @@
 {%extends 'bookAppBase.html'%}
 
 {%block content%}
-
+<style>
+    .content{
+        text-align: center;
+        padding-left: 15px;
+        width:400px;
+        margin: auto;
+        margin-top: 150px;
+        margin-bottom: 150px;
+        height: 200px;
+    }
+    table{
+        position: relative;
+        left: 120px;
+        border: 1px solid beige;
+    }
+    button{
+        position: relative;
+        left: 20px;
+        top:-15px;
+        background-color: black;;
+        color:beige;
+        padding: 10px;
+    }
+</style>
     <hr>
     <div class="content">
+    <h1 >MyPage</h1><br>
         <table>
             <tr>
                 <td>이름</td><td> {{user.username}}</td>
@@ -21,7 +45,6 @@
                 <td>대학</td><td> {{user.university}}</td>
             </tr>
         </table>
-
-        <!--<a class="toNext" href="{% url 'editMyPage' %}">수정하기</a>-->
-    {%endblock%}
-    </div>
+        
+   
+    </div> {%endblock%}

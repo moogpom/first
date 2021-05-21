@@ -8,7 +8,7 @@ class PomBlog(models.Model):
     pub_date=models.DateTimeField()
     body=models.TextField()
     image = models.ImageField(upload_to="mediaForm/",blank=False,null=False)
-    image_thumbnail = ImageSpecField(source = 'image',processors=[ResizeToFill(120,200)])
+    image_thumbnail = ImageSpecField(source = 'image',processors=[ResizeToFill(200,200)])
 #,blank=True,null=True 는 비어있을 수 있다고 설정해주는 거임
 
 

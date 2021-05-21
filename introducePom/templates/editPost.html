@@ -3,10 +3,88 @@
 
 {%block content %}
 {% load static %}
-    
+    <style>
+        img{
+            height : 120px;
+        }
+        
+        div.file_form {
+            position: relative;
+            display: inline-block;
+            width: 198px;
+            height: 40px;
+            border: 1px ridge cornflowerblue;
+            font-size: 10px;
+            line-height: 40px;
+        }
+
+        div.file_form span.text {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 0 60px 0 5px;
+        }
+
+        div.file_form:after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 48px;
+            height: 100%;
+            content: '파일찾기';
+            color: #fff;
+            text-align: center;
+            box-sizing: border-box;
+            background-color: cornflowerblue;
+            border: 1px solid lightgray;
+        }
+
+        div.file_form input[type="file"] {
+            position: absolute;
+            width: 48px;
+            height: 40px;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        ::-webkit-file-upload-button { 
+            cursor:pointer; 
+        }
+        .toNext{
+            background-color: rgb(245, 212, 212);
+            border:3px dashed cornflowerblue;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        input,textarea{
+            width:500px;
+        }
+        .deleteimage{
+            text-align: left;
+        }
+        table{
+        margin: auto;
+        width : 700px;
+        border:3px dashed cornflowerblue;
+        background-color: rgb(255, 244, 196);
+        }
+        th{
+            width : 60px;
+            border:1px solid cornflowerblue;
+        }
+        .body{
+            height: 100%;
+        }
+    </style>
 <form  method="post" enctype="multipart/form-data">
     {%csrf_token%}
     <br>
+    <div class="body">
    <h1>글 수정하기</h1>
    <hr><br>
     <table>
@@ -14,18 +92,22 @@
         <tr><td>작성자</td> <td><input type="text" name="writer" value="{{postContents.writer}}"></td></tr>
         <tr><td>본문</td><td><textarea name="body" cols="30" rows="10" >{{postContents.body}}</textarea></td></tr>
         <tr><td>사진 : 
+        <div class="file_form">
         {% if postContents.image %}
-             <input type="file" name="image" value="{{postContents.image.url}}"><a href="{{postContents.image.url}}"><img src={{postContents.image.url}} alt="pom"></a>
+             <input type="file" name="image" ><a href="{{postContents.image.url}}"><img src={{postContents.image.url}} alt="pom"></a>
         {% else %}
             <input type="file" name="image" >
         {% endif %}
-        </td></tr>
-        <tr><td></td><td align="center"><button type="submit">올리기</button></td></tr>
+        <span class="text"></span>
+        </div>
+        </td>
+        <td align="center"><button type="submit" class="toNext">올리기</button></td></tr>
     </table>
     <br>
 </form>
-<form  action="{% url 'deleteimage' postContents.id%}"method="post" >
+<form class="deleteimage" action="{% url 'deleteimage' postContents.id%}"method="post" >
     {%csrf_token%}
-    <button type="submit">사진삭제</button>
+    <button type="submit" class="toNext">사진삭제</button>
 </form>
+</div>
 {%endblock%}

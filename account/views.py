@@ -30,7 +30,7 @@ def register_view(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()#얘는 commit없음
-        return  redirect('myPage')
+        return  redirect('homePage')
     else:
         form = SignUpForm()
         return render(request,'signUp.html',{'form':form})

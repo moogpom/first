@@ -7,45 +7,39 @@
     .showColor{
         color:beige;
     }
+   
+    
+    .bookList{
+        border:1px beige solid;
+       width:850;
+       height : 200px;
+    }
+    .bookimage{
+        float : left;
+    }
 </style>
 
-<div >
-    {% if not user.is_authenticated%}
-    <h1 ><a id="login" class="showColor" href="{% url 'login'%}">로그인</a></h1>
-    <h1 ><a id="signUp" class="showColor" href="{% url 'signUp'%}">회원가입</a></h1>
-    {% endif %}
-    {% if user.is_staff%}
-    <a id="deleteAll" class="showColor"href="{% url 'deleteAll'%}">전체 게시글 삭제</a>
-    {% endif %}
-    {% if user.is_authenticated%}<!--authenticate상태인wㅣ anonymous상태인지(인증된 유저인ㄴ지 아닌지) 체크-->
-    <h1 ><a id="logout" class="showColor"href="{% url 'logout'%}">로그아웃</a></h1>
-    <h1 ><a id="myPage" class="showColor"href="{% url 'myPage'  %}">마이페이지</a></h1>
-    안녕하세요 {{user.nickname}}님!
-    {% endif %}
-</div>
-<span class="toPom"><a href="{% url 'home'%}"><img src="{%static 'pomface.png'%}" alt="pompom" width="50"><br>폼폼이<br>보러가기</a></span>
+<div class="toPom"><a href="{% url 'home'%}"><img src="{%static 'pomface.png'%}" alt="pompom" width="50"><br>폼폼이<br>보러가기</a></div>
 <br>
     <h1>책 목록</h1>
     <hr style="border: solid 1px black; ">
-    <div class="bookList">
+   
        {% for unit in bookPosts %}
-            
+            <div class="bookList"> 
             {% if unit.image %}
             <p class="bookimage"><img src="{{unit.image_thumbnail.url}}" ></p>
             {% else %}
             <p class="bookimage"><img src="{%static 'noimagePom.jpg'%}" alt="book" width="120"></p>
             {% endif %}
-            <div class="bookList">
-            
-                제목 | {{unit.title}}<br> 
-                작가 | {{unit.writer}}<br>
-                설명 |  {{unit.summary}}
-                <a class="toNext" href="{% url 'detailPage' unit.id%}">...더보기</a><br>
-            
-            </div> 
+                    제목 | {{unit.title}}<br> 
+                    작가 | {{unit.writer}}<br>
+                    설명 |  {{unit.summary}}
+                    <a class="toNext" href="{% url 'detailPage' unit.id%}">...더보기</a><br>
+                
+             </div>
             <br><br><br>
         {% endfor %}
-    </div>
+    
     {#First Previous 3 of 4 Next Last#}
     <div class="pageNav">
         <!--First Previous-->
