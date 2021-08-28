@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <link href="{% static 'sjjn.css' %}" rel="stylesheet" type="text/css">
+    <title>손짱난</title>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <style>
+    .homeContainer{
+        position: relative;
+        top:30px;
+    }
+    #container{
+        border:0px;
+    }
+    nav p{
+        position: relative;
+        top:70px;
+        left:20px;
+    }
+    #logo img{
+        border-radius: 50px;
+        position: relative;
+        width: 100%;
+    }
+    .sidemenu li{
+        background-color: white;
+    }
+    </style>
+   <script>
+    function OnMouseIn(elem) 
+    {
+    elem.style.backgroundColor = "rgb(253, 222, 222)";
+    elem.style.border = "3px solid rgb(243, 150, 181)";
+    }
+    function OnMouseOut(elem) 
+    {
+    elem.style.backgroundColor = "white";
+    elem.style.border = "3px solid white";
+    elem.style.boxShadow = "2px 2px rgb(156, 57, 90)";
+    }
+    function OnMouseInTopMenu(elem) 
+    {
+    elem.style.color = "brown";
+    }
+    function OnMouseOutTopMenu(elem) 
+    {
+        elem.style.color = "black";
+    }
+    </script>
+</head>
+<body>
+    <div id="main">
+        <div class="topmenu">
+            <ul>
+                <li> {% if user.is_authenticated %}
+                    <a href="{% url 'logout'%}" onmouseover="OnMouseInTopMenu(this)" onmouseout="OnMouseOutTopMenu(this)">로그아웃</a> 
+                     {% else %}
+                      <a href=" {% url 'login'%}" onmouseover="OnMouseInTopMenu(this)" onmouseout="OnMouseOutTopMenu(this)"> 로그인</a>  
+                       {%endif%}</li>
+                       
+                       <li>{% if user.is_authenticated %}
+                  
+                        <a href="{% url 'mypage'%}" onmouseover="OnMouseInTopMenu(this)" onmouseout="OnMouseOutTopMenu(this)"> 마이페이지 </a>
+                    {% else %}
+                        <a href="#" onclick="auth()" onmouseover="OnMouseInTopMenu(this)" onmouseout="OnMouseOutTopMenu(this)"></a>마이페이지</a>
+                    {%endif%}</li>
+                <li><a href="{% url 'home'%}" onmouseover="OnMouseInTopMenu(this)" onmouseout="OnMouseOutTopMenu(this)">메인가기</a></li>
+            </ul>
+        </div>
+    <hr color="pink"><br>
+    <hr color="pink"> 
+        <div id="centerBody">
+            <nav class="sidemenu">
+                <ul >
+                    <li id="logo"><a href="{% url 'home'%}"><img  src="{% static '손짱난로고1.png' %}" width="180px"></a></li>
+                    <a href="{% url 'sonjjangnan'%}"><li onmouseover="OnMouseIn (this)" onmouseout="OnMouseOut (this)">공방 소개</li></a>
+                    <a href="{% url 'introClass'%}"><li onmouseover="OnMouseIn (this)" onmouseout="OnMouseOut (this)">클래스</li></a>
+                    <a href="{% url 'photo'%}"><li onmouseover="OnMouseIn (this)" onmouseout="OnMouseOut (this)">사진</li></a>
+                    <a href="{% url 'howToGo'%}"><li onmouseover="OnMouseIn (this)" onmouseout="OnMouseOut (this)">오시는 길</li></a>
+                </ul>
+              
+            </nav><script>
+                function auth(){
+                     alert("로그인하세요");
+                }
+                </script>
+            <div class="container">
+                {%block content%}
+                {%endblock%}
+            </div>
+    
+        </div>
+        <footer><br><span >손짱난</span> 전화번호 : 010 5005 8331 주소 : 서울 송파구 백제고분로33길 14 301호 이메일 : gpg5005@naver.com <span>손짱난</span> 
+            <div class="footermenu">
+                <ul> 
+                    <li><a href="https://www.instagram.com/sszzn_n/?utm_medium=copy_link">인스타그램 <img src="{% static '인스타그램.png' %}" width="18px"></a></li>
+                    <li><a href="https://blog.naver.com/sszznn">손짱난 블로그<img  src="{% static '네이버블로그.png' %}"  width="18px"></a></li>
+                    <li><a href="https://talk.naver.com/ct/w4ny80">네이버톡톡 문의<img src="{% static 'navertalk.jpg' %}"width="18px"></a></li>
+                    <li><br></li>
+                </ul>  
+                </div></footer>
+    </div>
+</body>
+</html>

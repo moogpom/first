@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+{% load static %}
+<style>
+    #container{
+           background-image: url("{% static '손짱난내부/손짱난.jpg'%}") ;
+           background-size: cover;
+            
+            background-size: 850px 700px;
+            background-repeat: no-repeat;
+            height: 690px;
+            border: none;
+        }
+    section{
+        background-color: rgba( 255, 255, 255, 0.9 );
+        text-shadow: 1px 1px brown;
+        color : gray;
+        width: 98%;
+        text-align: center;
+       
+    }
+    form{ margin: auto;}
+    h1{font-size: 50px;}
+       </style>
+       <div id="container">
+        <br><section>
+<h1 >회원가입</h1>
+<form  action="{% url 'signUp' %} " method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <table>
+    {{form.as_table}}
+    </table>
+    <br>
+    <button  type="submit">올리기</button>
+</form></section></div>
+{%endblock%}

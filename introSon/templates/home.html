@@ -1,0 +1,64 @@
+{%extends 'base.html'%}
+
+{%block content %}
+{% load static %}
+<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사진슬라이드가 재생돼요! =></span>
+<div id="container">
+    <div class="slider">
+        <div class="slider_item"><img src="{% static '손짱난내부/손짱난.jpg'%}"></div>
+        <div class="slider_item"><img src= "{% static '손짱난내부/책상.jpg'%}"></div>
+        <div class="slider_item"><img src="{% static '손짱난내부/zkvp.jpg'%}"></div>
+        <div class="slider_item"><img src="{% static '손짱난내부/햇빛.jpg'%}"></div>
+        <div class="slider_item"><img src="{% static '손짱난내부/학생입장.jpg'%}"></div>
+        
+    </div>
+</div> 
+<script>
+    const showing_class = "showing";
+    const firstSlide = document.querySelector(".slider_item:first-child");
+    function slide(){
+        const currentSlide = document.querySelector(`.${showing_class}`); 
+        if(!currentSlide)
+        { 
+            firstSlide.classList.add(showing_class); 
+        }
+        else
+        {
+            currentSlide.classList.remove(showing_class);
+            const nextSlide = currentSlide.nextElementSibling;
+            if (nextSlide){
+                nextSlide.classList.add(showing_class);
+            } 
+            else {
+                firstSlide.classList.add(showing_class);
+            }
+        } 
+    }
+    slide();
+    setInterval(slide, 2500); 
+
+</script>
+<style>
+.slider{
+    width: 100%;
+    position: relative;
+}
+.slider_item{
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+    position: absolute;
+    opacity: 0;
+    transition: all .5s ease-in-out;
+}
+.slider_item img{
+    width: 100%;
+    height: 800px;
+}
+.showing{
+    opacity: 1;
+    z-index: 1;
+    transform: none;
+}
+</style>
+{%endblock%}
