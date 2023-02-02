@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+    <a href="{% url 'home'%}">홈페이지</a>
+    <hr>
+    {{blogContents.title}}<br>
+    {{blogContents.writer}}<br>
+    {{blogContents.body}}<br>
+    {{blogContents.pub_date}}<br>
+
+    <a href="{% url 'editPost' blogContents.id%}">수정하기</a>
+    <a href="{% url 'deletePost' blogContents.id%}">삭제하기</a>
+    {%endblock%}

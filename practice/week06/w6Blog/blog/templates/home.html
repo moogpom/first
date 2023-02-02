@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+    <h1>Blog Project</h1>
+    <a href="{% url 'newPost'%}">NewPost</a><hr>
+    {% for unit in blogContents %}
+        {{unit.title}}<br>
+        {{unit.writer}}<br>
+        {{unit.summary}}<br>
+        <a href="{% url 'detail' unit.id%}">more</a><br>
+    {% endfor %}
+
+
+{%endblock%}
