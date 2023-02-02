@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail</title>
+    <style>
+        body{
+            text-align: center;
+            background-color:rosybrown;
+            }
+  
+        .text{
+            background-color: pink;
+            width:100%;
+            height:500px;
+        }
+
+</style>
+</head>
+<body>
+    <h1>{{b_detail.title}}</h1>
+ 
+   <div class="text">{{b_detail.body}}</div> 
+</body>
+<footer>  작성자 :  {{b_detail.writer}}
+    날짜 : {{b_detail.pub_date}}</footer>
+</html>
