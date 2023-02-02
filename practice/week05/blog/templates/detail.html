@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{blogContents.title}}</h1>
+    {{blogContents.writer}}
+    {{blogContents.pub_date}}
+    <hr>
+    <p>{{blogContents.body}}</p>
+    <a href="{% url 'edit' blogContents.id %}">수정하기</a>
+    <a href="{% url 'delete' blogContents.id %}">삭제하기</a>
+{% endblock %}
