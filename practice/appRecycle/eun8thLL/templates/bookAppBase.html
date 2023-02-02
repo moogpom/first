@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <style>
+        body{
+          background-color: rgb(75, 37, 37);
+          color : beige;
+          margin: auto;
+          width: 1000px;
+          height: 100%;
+            padding:0px;}
+        .header{
+          background-color: beige;
+          font-size: 20px;
+          font-weight: 900;
+          width: 950px;
+          margin: auto;
+          margin-top: 20px;
+          border: 1px solid black;
+          border-radius: 30px;
+        }
+        
+        .newBook{
+          position: relative;
+          left: 500px;
+          color:rgb(75, 37, 37);
+        } 
+        .bookLogo{
+          position: relative;
+          top:25px;
+          left:35px;
+          font-size: 50px;
+          margin:auto;
+        }
+        a{
+          text-decoration: none;
+          color: rgb(75, 37, 37);
+        }
+        a:hover{
+          color: green;
+        }
+        .toNext{
+          color : beige;
+        }
+       
+        hr{
+          border: solid 1px black;
+        }
+        footer{
+          text-align: right;
+          color:beige;
+          font-weight: 100;
+          clear: both;
+        }
+        li{
+          display: inline-block;
+        }
+        ul{
+          color: rgb(75, 37, 37);
+          position: relative;
+          left: 550px;
+        }
+        .anonymous{
+          position: relative;
+          left: 750px;
+        }
+        .general{
+          position: relative;
+          left: 700px;
+        }
+        .menubar{
+          color: rgb(75, 37, 37);
+        }
+        .hello{
+          position: relative;
+          left: 30px;
+          top:-20px;
+          color:chocolate
+        }
+    </style>
+</head>
+<body>
+  {% load static %}
+  <div class="header"> 
+    <a  class="bookLogo" href="{% url 'homePage'%}">BOOK<img src="{%static 'book.png'%}" alt="book" width="80"></a>
+    {% if user.is_authenticated%}
+    <a href="{% url 'newBook'%}" class="newBook">책 등록하기</a> 
+   {% endif %}
+<div class="menubar">
+  <ul class="anonymous">
+  {% if not user.is_authenticated%}
+  <li><a id="login"  href="{% url 'login'%}">Login</a></li>&nbsp;|
+  <li><a id="signUp"  href="{% url 'signUp'%}">회원가입</a></li>
+  {% endif %}
+  </ul>
+  <ul>  
+  {% if user.is_staff%}
+  <li><a id="deleteAll" href="{% url 'deleteAll'%}">전체게시글삭제</a></li>
+  {% endif %}
+  </ul>
+  <ul class="general">
+  {% if user.is_authenticated%}<!--authenticate상태인wㅣ anonymous상태인지(인증된 유저인ㄴ지 아닌지) 체크-->
+  <li><a id="logout" href="{% url 'logout'%}">로그아웃</a></li>&nbsp;|
+  <li><a id="myPage" href="{% url 'myPage'  %}">마이페이지</a></li>
+</ul>
+<div class="hello">
+  안녕하세요 {{user.nickname}}님!
+  {% endif %}
+</div>
+</div>
+  </div> 
+  <div class="container">
+        {%block content%}
+        {%endblock%}
+  </div>
+  <footer>
+    <hr >
+    정은영 멋쟁이 사자 
+    gpg5005@naver.com
+    01050058331
+    서울시 송파구 잠실6동
+  <hr>
+  </footer>
+</body>
+</html>

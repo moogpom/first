@@ -1,0 +1,21 @@
+ .toPom{
+    text-align: center;
+    position: fixed;
+    right:10%;
+    padding: 10px;
+    background-color: rgb(166, 112, 218) ;
+    border-radius: 30px;
+    border : 2px lavender dashed ;
+    width : 100px;
+    float: right;
+  }
+ .toPom a{
+    color:white ;
+  }
+  /*
+  .toPom{
+    position: fixed;
+    left: 950px;
+    
+
+}*/

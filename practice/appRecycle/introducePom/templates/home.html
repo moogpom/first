@@ -1,0 +1,40 @@
+{%extends 'pomBlogBase.html'%}
+
+
+{%block content %}
+{% load static %}
+<style>
+    table{
+        margin: auto;
+        width : 700px;
+        border:3px dashed cornflowerblue;
+        background-color: rgb(255, 244, 196);
+    }
+    th{
+        width : 60px;
+        border:1px solid cornflowerblue;
+    }
+    td{
+        border:1px solid cornflowerblue;
+    }
+    .thum{
+        background-color: rgb(245, 212, 212);
+    }
+</style>
+    <hr>
+    <span>{% for unit in blogContents %}
+        
+        <table>
+            <tr><td class="thum"colspan="4"> 
+                <a class="toNext" href="{% url 'detailPost' unit.id%}"> {% if unit.image %}
+                <img src="{{unit.image_thumbnail.url}}" >
+                {% else %}
+                <img src="{%static 'noimagePom.jpg'%}" alt="pom" width="200">
+                {% endif %}</a></td></tr>
+            <tr><th>제목</th><td> {{unit.title}}</td>
+            <th>작성자</th> <td> {{unit.writer}}</td></tr>
+            <tr><th >본문</th><td colspan="3">{{unit.summary}} <a class="toNext" href="{% url 'detailPost' unit.id%}">.....</td></tr>
+        
+         </table>
+    {% endfor %}</span>
+ {%endblock%}

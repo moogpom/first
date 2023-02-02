@@ -1,0 +1,41 @@
+
+{%extends 'pomBlogBase.html'%}
+
+
+{%block content %}
+{% load static %}
+<style>
+    td input,td textarea{width:600px}
+   
+
+    table{
+        margin: auto;
+       
+        border:3px dashed cornflowerblue;
+        background-color: rgb(255, 244, 196);
+    }
+    th{
+        border:1px solid cornflowerblue;
+    }
+    td{ width : 700px;
+        border:1px solid cornflowerblue;
+    }
+    .thum{
+        background-color: rgb(245, 212, 212);
+    }
+</style>
+<form  method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <br>
+   <h1>새 글 작성하기</h1>
+   <hr><br>
+    <table>
+        <tr><th>제목</th><td> <input  type="text" name="title"></td></tr>
+        <tr><th>작성자</th> <td><input type="text" name="writer"></td></tr>
+        <tr><th>본문</th><td><textarea name="body" cols="30" rows="10"></textarea></td></tr>
+        <tr><th>사진 : <input type="file" name="image"></th>
+        <td align="center"><button type="submit">올리기</button></td></tr>
+    </table>
+    <br>
+</form>
+{%endblock%}

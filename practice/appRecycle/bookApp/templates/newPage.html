@@ -1,0 +1,31 @@
+{%extends 'bookAppBase.html'%}
+
+{%block content%}
+<style>
+    table{
+        margin:auto;
+        text-align: center;
+    }
+    input,textarea{
+        width: 340px;
+    }
+    
+    button{
+        position: relative;
+        left: 490px;
+        top:-15px;
+        background-color: black;;
+        color:beige;
+        padding: 10px;
+    }
+</style>
+<a href="{% url 'homePage'%}">홈페이지</a>
+<form  method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <table>
+    {{form.as_table}}
+    </table>
+    <br>
+    <button  type="submit">올리기</button>
+</form>
+{%endblock%}

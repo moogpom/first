@@ -1,0 +1,60 @@
+{%extends 'bookAppBase.html'%}
+
+{%block content%}
+<link rel="stylesheet"  type="text/css" href="../static/bookHomeCSS.css">
+{% load static %}
+<style>
+    .showColor{
+        color:beige;
+    }
+   
+    
+    .bookList{
+        border:1px beige solid;
+       width:850;
+       height : 200px;
+    }
+    .bookimage{
+        float : left;
+    }
+</style>
+
+<div class="toPom"><a href="{% url 'home'%}"><img src="{%static 'pomface.png'%}" alt="pompom" width="50"><br>폼폼이<br>보러가기</a></div>
+<br>
+    <h1>책 목록</h1>
+    <hr style="border: solid 1px black; ">
+   
+       {% for unit in bookPosts %}
+            <div class="bookList"> 
+            {% if unit.image %}
+            <p class="bookimage"><img src="{{unit.image_thumbnail.url}}" ></p>
+            {% else %}
+            <p class="bookimage"><img src="{%static 'noimagePom.jpg'%}" alt="book" width="120"></p>
+            {% endif %}
+                    제목 | {{unit.title}}<br> 
+                    작가 | {{unit.writer}}<br>
+                    설명 |  {{unit.summary}}
+                    <a class="toNext" href="{% url 'detailPage' unit.id%}">...더보기</a><br>
+                
+             </div>
+            <br><br><br>
+        {% endfor %}
+    
+    {#First Previous 3 of 4 Next Last#}
+    <div class="pageNav">
+        <!--First Previous-->
+        {% if bookPosts.has_previous%}
+        <a class="showColor" href="?page=1">First</a>
+        <a class="showColor" href="?page={{bookPosts.previous_page_number}}">Previous</a>
+        {% endif %}
+        <!--현재 of 전체-->
+        <span>{{bookPosts.number}}</span>
+        <span>of</span>
+        <span>{{bookPosts.paginator.num_pages}}</span>
+        <!--Next Last-->
+        {% if bookPosts.has_next%}
+        <a class="showColor" href="?page={{bookPosts.next_page_number}}">Next</a>
+        <a class="showColor" href="?page={{bookPosts.paginator.num_pages}}">Last</a>
+        {% endif %}
+    </div>
+{%endblock%}

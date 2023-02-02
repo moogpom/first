@@ -1,0 +1,50 @@
+{%extends 'bookAppBase.html'%}
+
+{%block content%}
+<style>
+    .content{
+        text-align: center;
+        padding-left: 15px;
+        width:400px;
+        margin: auto;
+        margin-top: 150px;
+        margin-bottom: 150px;
+        height: 200px;
+    }
+    table{
+        position: relative;
+        left: 120px;
+        border: 1px solid beige;
+    }
+    button{
+        position: relative;
+        left: 20px;
+        top:-15px;
+        background-color: black;;
+        color:beige;
+        padding: 10px;
+    }
+</style>
+    <hr>
+    <div class="content">
+    <h1 >MyPage</h1><br>
+        <table>
+            <tr>
+                <td>이름</td><td> {{user.username}}</td>
+            </tr>
+            <tr>
+                <td>비밀번호</td><td> {{user.password1}}</td>
+            </tr>
+            <tr>
+                <td>닉네임</td><td> {{user.nickname}}</td>
+            </tr>
+            <tr>
+                <td>사는 곳</td><td> {{user.location}}</td>
+            </tr>
+            <tr>
+                <td>대학</td><td> {{user.university}}</td>
+            </tr>
+        </table>
+        
+   
+    </div> {%endblock%}
