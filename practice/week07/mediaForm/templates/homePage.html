@@ -1,0 +1,27 @@
+{%extends 'base2.html'%}
+
+{%block content%}
+{% load static %}
+    <h1>책 목록</h1>
+    <hr color="green" >
+    <div class="bookList">
+       {% for unit in bookContents %}
+            
+            {% if unit.image %}
+            <p class="bookimage"><img src="{{unit.image_thumbnail.url}}" ></p>
+            {% else %}
+            <p class="bookimage"><img src="{%static 'noimagePom.jpg'%}" alt="book" width="80"></p>
+            {% endif %}
+            <div class="bookList">
+            
+                제목 | {{unit.title}}<br> 
+                작가 | {{unit.writer}}<br>
+                설명 |  {{unit.summary}}
+                <a class="toNext" href="{% url 'detailBook' unit.id%}">...더보기</a><br>
+            
+            </div> 
+            <br><br><br>
+        {% endfor %}
+    </div>
+
+{%endblock%}

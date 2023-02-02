@@ -1,0 +1,19 @@
+{%extends 'base2.html'%}
+
+{%block content%}
+
+    <hr>
+    <div class="content">
+    {% if bookContents.image %}
+    <p><img src={{bookContents.image.url}} alt=""></p>
+    {% endif %}
+    제목 | {{bookContents.title}}<br>
+    작가 | {{bookContents.writer}}<br>
+   출판사 |  {{bookContents.publisher}}<br>
+    해설 | {{bookContents.body}}<br>
+    {{bookContents.new_date}}<br>
+
+    <a class="toNext" href="{% url 'editBook' bookContents.id%}">수정하기</a>
+    <a class="toNext" href="{% url 'deleteBook' bookContents.id%}">삭제하기</a>
+    {%endblock%}
+    </div>

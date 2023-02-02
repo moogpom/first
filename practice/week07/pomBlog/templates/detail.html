@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<br>
+<hr>
+<form action="{%url 'create'%}" method="post">
+    {%csrf_token%}
+    <br>
+   
+   <hr>
+    <table class="detailTable">
+        <tr><th>제목</th><td> {{postContents.title}}</td></tr>
+        <tr><th>작성자</th> <td> {{postContents.writer}}</td></tr>
+        <tr><th>본문</th><td height="400px"> {{postContents.body}}</textarea></td></tr>
+    </table>    
+    {{postContents.pub_date}}<br>
+    <a href="{% url 'editPost' postContents.id%}">수정하기</a>
+    <a href="{% url 'deletePost' postContents.id%}">삭제하기</a>
+    
+    <br>
+</form>
+    
+  
+    
+
+    
+   
+    {%endblock%}

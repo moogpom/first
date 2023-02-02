@@ -1,0 +1,14 @@
+{%extends 'base2.html'%}
+
+{%block content%}
+
+<a href="{% url 'homePage'%}">홈페이지</a>
+<form action=" " method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <table>
+    {{form.as_table}}
+    </table>
+    <br>
+    <button  type="submit">올리기</button>
+</form>
+{%endblock%}

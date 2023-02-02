@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <style>
+        body{
+          background-color: rgb(75, 37, 37);
+          color : beige;}
+        .header{
+          background-color: beige;
+          font-size: 20px;
+          font-weight: 900;
+          margin: auto;
+        }
+        
+        .header>p{
+          text-align: right;
+        } 
+        .bookPage{
+          font-size: 50px;
+          margin:auto;
+        }
+        a{
+          text-decoration: none;
+          color: rgb(75, 37, 37);
+        }
+        a:hover{
+          color: green;
+        }
+        .bookimage{
+          float: left;
+          clear: both;
+        }
+        .bookList{
+          padding: 30px;
+          height: 200px;
+        }
+        .toNext{
+          color: beige;
+        }
+        input,textarea{
+          background-color: beige;
+
+        }
+        .content{
+          text-align: center;
+        }
+    </style>
+</head>
+<body>
+  {% load static %}
+  <div class="header"> 
+    <a  class="bookPage" href="{% url 'homePage'%}">BOOK<img src="{%static 'book.png'%}" alt="book" width="80"></a>
+    <p><a href="{% url 'newBook'%}">책 등록하기</a> |
+    <a href="{% url 'home'%}"><img src="{%static 'pomface.png'%}" alt="pompom" width="50">폼폼이보러가기</a></p>
+  </div> 
+ <div class="container">
+        {%block content%}
+        {%endblock%}
+    </div>
+
+</body>
+</html>

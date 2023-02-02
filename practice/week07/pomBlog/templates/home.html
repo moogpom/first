@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block content%}
+<p class="header menu" > <a href="{% url 'newPost'%}">글올리기</a>&nbsp;|&nbsp;<a href="{% url 'homePage'%}">책보러가기<img src="{%static 'book.png'%}" alt="book" width="30"></a></p>
+    
+   <hr>
+   
+    <table class="homeTable">
+        {% for unit in blogContents %}
+          <tr>  
+           <td> &nbsp;<h4>{{unit.title}}</h4><br>
+            <p>{{unit.summary}}
+            <a href="{% url 'detail' unit.id%}">...more</a></p>
+            </td>
+         </tr>
+         <tr class = "blank"><td></td></tr>
+        {% endfor %}
+    </table>
+    
+
+{%endblock%}
