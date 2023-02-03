@@ -1,0 +1,165 @@
+{%extends 'base.html'%}
+
+{%block content%}
+   
+    {% load static %}
+    <style>
+         #container{
+           background-image: url("{% static '손짱난내부/손짱난.jpg'%}") ;
+           background-size: cover;
+            
+            background-size: 850px 700px;
+            background-repeat: no-repeat;
+            height: 690px;
+            font-size: 30px;
+            border: none;
+             overflow-y: scroll;
+            overflow-x: hidden;
+            position: relative;
+            left: -0px;
+        }
+        #container h1{
+                font-size: 50px;
+            }
+        section{
+            background-color: rgba( 255, 255, 255, 0.9 );
+            text-shadow: 1px 1px brown;
+            color : black;
+            width: 100%;
+           
+        }
+        .scroll{
+            position: relative;
+            left:100px;
+            width : 1000px;
+            height: 450px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin: auto;
+        }
+        #unit{
+            margin: auto;
+            text-align: center;
+        }
+        .info{
+            background-color: rgb(243, 202, 201);
+            margin: auto;
+        }
+        .info td{
+            width: 300px;
+        }
+        .info tr,.info th,.info td{
+            border-collapse: collapse;
+            border: 1px black solid;
+            padding: 5px;
+        }
+        .myBookmark ,.myPost{
+            font-size: 20px;
+        }
+        .thumb{
+            float: left;
+        }
+        #unit{clear: both;}
+        .myPost{display:none;}
+        .myBookmark{display:none;}
+    </style>
+
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script>
+  
+        function deletePost() 
+            {
+                var ret = confirm("게시물을 삭제합니다.");
+                return ret;
+            }
+            $(document).ready(function() {
+             $("#myPost").click(function() {
+                 $(".myPost").slideToggle("slow");
+             });
+         });
+         $(document).ready(function() {
+             $("#myBookmark").click(function() {
+                 $(".myBookmark").slideToggle("slow");
+             });
+         });
+         function OnMouseIn(elem) 
+           {
+               elem.style.color = "olive";
+           }
+       function OnMouseOut(elem) 
+           {
+               elem.style.color= "rgb(179, 108, 108)";
+           }
+         </script>
+         </script>
+   
+   <div id="container">
+    <br><section>
+    <div id="unit">
+            <br>
+            {% for units in userinfo %}
+                {% if units == user%}
+                <div class="container">
+
+                   <h1><name>{{units.username}}</name>님 회원정보  <br></h1>
+                   <table class="info">
+                       <tr><th>강아지 여부</th><td>{{units.dog}}</td></tr>
+                       <tr><th> 관심분야</th><td>{{units.like}}</td></tr>
+                       <tr><th>오게된 계기</th><td>{{units.introduce}}</td></tr>
+                       <tr><td colspan="2"><button>
+                        <a class="toNext" href="{% url 'editMypage' user.id%}">프로필수정하기</a>
+                     </button></td></tr>
+                   </table>
+
+                   <br><br>       
+
+                   
+                   
+                    {%endif %}
+            {% endfor %}
+            <hr>
+            <b id="myBookmark" onmouseover="OnMouseIn(this)" onmouseout="OnMouseOut (this)">북마크 목록 </b><br><br>
+            <div class="scroll myBookmark">
+                {% for bunit in bookmark %}
+                   
+                    {% for punit in posts %}
+                    {% if bunit.postId.id == punit.id %}
+                        <div id="unit" class='myBookmark'>
+                            <img class="thumb" src={{punit.image.url}} alt='image' height="150px" width="150px">
+                            제목 | {{punit.title}}<br> 
+                            작성일 | {{punit.pub_date}}<br> 
+                            작성자 | {{punit.writer}}<br>
+                            글 |  {{punit.summary}}<br>
+                            <a class="toNext" href="{% url 'detailPage' punit.id%}">...더보기</a>|  <a class="toNext" href="{% url 'deleteBookmark' bunit.id%}" onclick="return deletePost()">북마크에서 삭제하기</a>
+                        </div>
+                        {%endif%}
+                        
+                    {% endfor %}
+                  
+                    <hr width: 200px> {% endfor %}
+        </div>
+<hr>
+            <b id="myPost" onmouseover="OnMouseIn(this)" onmouseout="OnMouseOut (this)">내가 쓴 글 보기</b><br><br>
+            <div class="scroll myPost">
+                {% for unit in posts %}
+                {% if unit.writer == request.user %}
+                    <div id="unit" class='myPost'>
+                        <img class="thumb" src={{unit.image.url}} alt='image' height="150px" width="150px">
+                        제목 | {{unit.title}}<br> 
+                        작성자 | {{unit.writer}}<br>
+                        글 |  {{unit.summary}}<br>
+                        <a class="toNext" href="{% url 'detailPage' unit.id%}">...더보기</a>| <a class="toNext" href="{% url 'deletePost' unit.id%}" onclick="return deletePost()"> 글 삭제하기</a>
+                    </div>
+                    {%endif%}
+                   
+                <hr width: 200px><br>{% endfor %}
+        </div>
+        <hr>
+        <br>
+            </div>  
+        <br>
+        <br>
+    
+    </div></section></div>
+   
+    {%endblock%}

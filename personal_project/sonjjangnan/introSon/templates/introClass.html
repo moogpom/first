@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+
+{%block content %}
+{% load static %}
+<style>
+  #container{
+           background-image: url("{% static '손짱난내부/손짱난.jpg'%}") ;
+           
+            background-size: 850px 700px;
+            height: 690px;
+            font-size: 30px;
+            border: none;
+        }
+    section{
+        background-color: rgba( 255, 255, 255, 0.9 );
+        text-shadow: 1px 1px brown;
+        color : gray;
+        height: 600px;
+        
+        width: 100%;
+    }
+</style>
+<div id="container">
+        <br><section>
+    <img class="homeContainer" src="{% static '손짱난메뉴.jpg'%}"  width="720px" height="550px">
+    </section>
+</div> 
+{%endblock%}

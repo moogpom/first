@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+
+{%block content %}
+{% load static %}
+    <style>
+    .homeContainer{
+        position: relative;
+        top:30px;
+    }
+    #container{
+           background-image: url("{% static '손짱난내부/손짱난.jpg'%}") ;
+           background-size: cover;
+            
+            background-size: 850px 700px;
+            height: 690px;
+            font-size: 30px;
+            border: none;
+        }
+    section{
+        background-color: rgba( 255, 255, 255, 0.9 );
+        text-shadow: 1px 1px brown;
+        color : gray;
+        width: 100%;
+    }
+    #container  span{
+        border:3px solid white;
+        padding: 10px;
+    }
+    </style>
+            <div id="container">
+                <br><section><h1>손짱난은?</h1> 서울시 송파구에 위치하고있는 공방입니다!<br><br>&nbsp&nbsp
+                    <span>• 석촌동 18-3 301호 • 영업시간 15:00 ~ 21:00</span><br><br>
+                드로잉,  레진아트 등 각종 예쁘고 귀여운 소품을 만들고 있어요 😆💕<br><br>
+                전문적인 수업을 원하시는 분도, 그냥 취미로 요즘 유행하는 키트를 <br>만들어보고 싶으신 분도
+                모두에게 적합한 공방입니다<br><br>
+                또 손짱난은
+                강아지 동반 가능한 공방으로 <br>강아지를 위한 용품만들기, 강아지와 함께하는 수업도 있습니다<br><br>
+           <section> </div> 
+        {%endblock%}

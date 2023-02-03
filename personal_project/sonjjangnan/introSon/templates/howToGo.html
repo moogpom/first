@@ -1,0 +1,84 @@
+{%extends 'base.html'%}
+
+{%block content %}
+{% load static %}
+<style>
+  #container{
+           background-image: url("{% static '손짱난내부/손짱난.jpg'%}") ;
+           background-size: cover;
+            
+            background-size: 850px 700px;
+            height: 690px;
+            font-size: 30px;
+            border: none;
+        }
+    section{
+        background-color: rgba( 255, 255, 255, 0.9 );
+        text-shadow: 1px 1px brown;
+        color : gray;
+        height: 600px;
+        
+        width: 100%;
+    }
+    #map{
+        border : 1px brown solid;
+        float : left;
+    }
+    .right{
+        font-size: 20px;
+        padding: 50px;
+        position: relative;
+        left: 30px;
+    }
+</style>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=grdr1aazfz"></script>
+ <div id="container">
+                <br><section><br>
+                    <h4>손짱난은 송파구 석촌고분역에 위치하고있어요!</h4>
+                    <div id="map" style="width:50%;height:400px;"></div>
+                    <div class="right">잠실역에서 오신다면 5번출구에서 <br>3314버스를 타고 삼학사길 사거리에서 하차하신 뒤 오실 수 있습니다!</div><br><br><br>
+                </section> </div> 
+<script>
+var HOME_PATH = '/static/';
+var sonjangnan = new naver.maps.LatLng(37.50385478553004, 127.09884717072892),
+    map = new naver.maps.Map('map', {
+        center: sonjangnan,
+        zoom: 16
+    }),
+    marker = new naver.maps.Marker({
+        map: map,
+        position: sonjangnan
+    });
+
+var contentString = [
+        '<div class="iw_inner">',
+        '   <h3>손짱난</h3>',
+        '   <p>서울특별시 송파구 석촌동 18-3<br />',
+        '       <img src="'+ HOME_PATH +'손짱난로고1.png"  width="55" height="55" alt="손짱난" class="thumb" /><br />',
+        '       공방<br />',
+        '   </p>',
+        '</div>'
+    ].join('');
+
+var infowindow = new naver.maps.InfoWindow({
+    content: contentString,
+    maxWidth: 140,
+    backgroundColor: "#eee",
+    borderColor: "pink",
+    borderWidth: 5,
+    anchorSize: new naver.maps.Size(30, 30),
+    anchorSkew: true,
+    anchorColor: "#eee",
+    pixelOffset: new naver.maps.Point(20, -20)
+});
+
+naver.maps.Event.addListener(marker, "click", function(e) {
+    if (infowindow.getMap()) {
+        infowindow.close();
+    } else {
+        infowindow.open(map, marker);
+    }
+});
+
+</script>
+{%endblock%}

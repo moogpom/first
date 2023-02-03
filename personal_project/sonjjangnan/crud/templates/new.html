@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700;900&display=swap');
+    #container{
+               background-image: url("{% static '손짱난내부/손짱난.jpg'%}") ;
+               
+                background-size: 850px 700px;
+                height: 690px;
+                border: none;
+            }
+        section{
+            background-color: rgba( 255, 255, 255, 0.9 );
+            
+            width: 100%;
+            text-align: center;
+           
+        }
+    .text {
+        border-radius: 20px;
+        font-family: 'Noto Sans KR', sans-serif;
+        position: relative;
+        margin: 5% 15%;
+        padding: 40px;
+        background-color: rgb(245, 206, 205);
+        color: rgb(65, 65, 65);
+    }
+</style>
+<br><br><br>
+<div id="container">
+    <br><section><br>
+<div class="text">
+    <form method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        {{post_form.as_p}}
+        <br><button type="submit">올리기</button>
+    </form>
+</div><br></section></div>
+{%endblock%}

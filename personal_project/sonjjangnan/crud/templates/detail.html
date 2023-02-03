@@ -1,0 +1,155 @@
+{%extends 'base.html'%}
+{%block content%}
+
+{% load static %}
+<style>
+     #container{
+           background-image: url("{% static '손짱난내부/손짱난.jpg'%}") ;
+           background-size: cover;
+            
+            background-size: 850px 700px;
+            background-repeat: no-repeat;
+            height: 690px;
+            font-size: 30px;
+            border: none;
+             overflow-y: scroll;
+            overflow-x: hidden;
+            position: relative;
+            left: -0px;
+        }
+    
+        section{
+            background-color: rgba( 255, 255, 255, 0.9 );
+            
+            width: 100%;
+            text-align: center;
+        }
+
+    table {
+        text-align: center;
+        border-collapse: collapse;
+        margin: auto;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    td:nth-child(1) {
+        width: 300px;
+    }
+
+    text {
+        font-weight: bold;
+        font-size: 20px;
+        color: rgb(230, 181, 181);
+        font-weight: bold;
+        margin: auto;
+    }
+
+    .header {
+        border-bottom: 1px solid rgb(230, 181, 181);
+    }
+    .header td{
+        width:450px
+    }
+    .detailTable {
+        background-color: rgb(235, 235, 235);
+        color: rgb(65, 65, 65);
+        border: 1px solid rgb(230, 181, 181);
+        width:650px
+    }
+    .text_body {
+        word-break: break-all;
+        padding: 30px;
+        background-color: white;
+        height: 300px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    date{
+        font-size: xx-small;
+    }
+    #cc{
+        margin-bottom: -40px;
+    }
+    .header > img {
+        max-height: 300px;
+        max-width: 300px;
+    }
+    .etc{
+        margin: auto;
+        position: relative;
+    }
+</style>
+<script>
+    function auth(){
+         alert("로그인 하신 뒤 이용가능한 서비스 입니다");
+    }
+    </script>
+{%csrf_token%}
+<br>
+<div id="container">
+    <br><section>
+    <br><br><br>
+    <div id="left">
+        <table class="detailTable">
+            {% if postContents.image %}
+            <tr class="header">
+                <td colspan="2">
+                    <img src={{postContents.image.url}} alt='image'  >
+                   
+                </td>
+            </tr>
+            {% endif %}
+            <!-- <tr><th>카테고리</th><td> {{postContents.category}}</td></tr>-->
+            <tr class="header">
+                <th>제목</th>
+                <td > {{postContents.title}}</td>
+            </tr>
+            <tr class="header">
+                <th>✏작성자✏</th>
+                   <td> {{postContents.writer}}
+                </td>
+            </tr>
+            <tr class="header">
+                <th>📝본문📝</th>
+                <td class="text_body "> {{postContents.body}}</textarea></td>
+            </tr>
+        </table>
+
+        <div class="etc">
+        {{postContents.pub_date}}<br>
+
+ {% if user.is_authenticated %}
+        <form method="POST"  action="{% url 'addBookmark' postContents.id%}"
+        enctype="multipart/form-data">
+        {%csrf_token%}
+        {{ bookmarkForm  }}
+       
+        <button type="submit" > 북마크추가</button>
+       
+    </form>
+        {% else %}
+        <form method="POST"  action="#"
+        enctype="multipart/form-data">
+        {%csrf_token%}
+        {{ bookmarkForm  }}
+        <button type="submit" onclick="auth()"> 북마크추가</button>
+    </form>
+        {%endif%}
+  
+
+
+
+
+        {% if user == postContents.writer %}
+        <a class="toNext" href="{% url 'editPost' postContents.id%}">수정하기</a>
+        <a class="toNext" href="{% url 'deletePost' postContents.id%}" onclick="return deletePost()">삭제하기</a>
+        {% elif user.is_staff%}
+        <a class="toNext" href="{% url 'deletePost' postContents.id%}" onclick="return deletePost()">삭제하기</a>
+        {%endif%}
+        </div>
+    </div></section><br>
+</div>
+{%endblock%}
